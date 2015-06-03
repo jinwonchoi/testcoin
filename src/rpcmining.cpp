@@ -414,6 +414,10 @@ Value getwork(const Array& params, bool fHelp)
 
 Value getblocktemplate(const Array& params, bool fHelp)
 {
+    if (params.size() == 2) {
+	printf("getblocktempalte params[0][%s]\n", params[0].get_str().c_str());
+	printf("getblocktempalte params[1][%s]\n", params[1].get_str().c_str());
+    }
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getblocktemplate [params]\n"

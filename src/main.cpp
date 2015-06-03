@@ -37,7 +37,7 @@ unsigned int nTransactionsUpdated = 0;
 map<uint256, CBlockIndex*> mapBlockIndex;
 //uint256 hashGenesisBlock("0x4f5b030a920529ee1ad36f4d9e74a59464ed27234b06a8a9484624e1646b1708"); 
 //uint256 hashGenesisBlock("0xa053df06e23e24b8c61c8dc1e7522106f3e48d5e1ad6194f1d682d5c1de3ba41"); //CHOI_DEBUG
-uint256 hashGenesisBlock("0x4ce2b6a5bf4062c5d80447b9900a8a562b0640477aa12482b2e1087ba29481ea");
+uint256 hashGenesisBlock("0xb72baef93a03887768d2baf6b99500088c3fc7c867d4b1e6ca8c4c328a751638");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Testcoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -2753,7 +2753,7 @@ bool LoadBlockIndex()
         pchMessageStart[3] = 0xdc;
         //hashGenesisBlock = uint256("0xf5ae71e26c74beacc88382716aced69cddf3dffff24f384e1808905e0188f68f");
         //hashGenesisBlock = uint256("0x4f5b030a920529ee1ad36f4d9e74a59464ed27234b06a8a9484624e1646b1708"); //CHOI_DEBUG
-        hashGenesisBlock = uint256("4ce2b6a5bf4062c5d80447b9900a8a562b0640477aa12482b2e1087ba29481ea");
+        hashGenesisBlock = uint256("0xb72baef93a03887768d2baf6b99500088c3fc7c867d4b1e6ca8c4c328a751638");
     }
 
     //
@@ -2787,7 +2787,7 @@ bool InitBlockIndex() {
 
         // Genesis block
         //const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
-        const char* pszTimestamp = "Minecraft finally  offers a free  feminine character in 9 May 2015"; 
+        const char* pszTimestamp = "Minecraft finally  offers a free  feminine character in 4 June 2015"; 
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2799,16 +2799,16 @@ bool InitBlockIndex() {
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1431357590;
+        block.nTime    = 1433365776;
         block.nBits    = 0x1e0ffff0;
         //block.nNonce   = 2084524493;
-        block.nNonce   = 108553;
+        block.nNonce   = 1141270;
 
         if (fTestNet)
         {
-            block.nTime    = 1431357590;//1317798646;
+            block.nTime    = 1433365776;
             //block.nNonce   = 385270584;
-            block.nNonce   = 108553;
+            block.nNonce   = 1141270;
         }
 
         //// debug print
@@ -2816,7 +2816,7 @@ bool InitBlockIndex() {
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0xbd38bd98ae847be5c0e053f0485d77651acfbbba18fbfae7b591884a85595b11"));   
+        assert(block.hashMerkleRoot == uint256("0x4b03a3c804d39ce8b9c614bffca58cf02010666c377309d7aad4fb48934b28c7"));
 
 	/** CHOI_DEBUG: start Inserted  codesnippet:  pastebin.com/jDMPUNuP#  */
 	//If genesis block hash does not match, then generate new genesis hash.

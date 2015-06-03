@@ -3,6 +3,7 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <iostream>
 #include "txdb.h"
 #include "walletdb.h"
 #include "bitcoinrpc.h"
@@ -307,7 +308,7 @@ std::string HelpMessage()
         "  -socks=<n>             " + _("Select the version of socks proxy to use (4-5, default: 5)") + "\n" +
         "  -tor=<ip:port>         " + _("Use proxy to reach tor hidden services (default: same as -proxy)") + "\n"
         "  -dns                   " + _("Allow DNS lookups for -addnode, -seednode and -connect") + "\n" +
-        "  -port=<port>           " + _("Listen for connections on <port> (default: 55774 or testnet: 45774)") + "\n" +
+        "  -port=<port>           " + _("Listen for connections on <port> (default: 45774 or testnet: 55774)") + "\n" +
         "  -maxconnections=<n>    " + _("Maintain at most <n> connections to peers (default: 125)") + "\n" +
         "  -addnode=<ip>          " + _("Add a node to connect to and attempt to keep the connection open") + "\n" +
         "  -connect=<ip>          " + _("Connect only to the specified node(s)") + "\n" +
@@ -350,7 +351,7 @@ std::string HelpMessage()
 #endif
         "  -rpcuser=<user>        " + _("Username for JSON-RPC connections") + "\n" +
         "  -rpcpassword=<pw>      " + _("Password for JSON-RPC connections") + "\n" +
-        "  -rpcport=<port>        " + _("Listen for JSON-RPC connections on <port> (default: 55773 or testnet: 45773)") + "\n" +
+        "  -rpcport=<port>        " + _("Listen for JSON-RPC connections on <port> (default: 45773 or testnet: 55773)") + "\n" +
         "  -rpcallowip=<ip>       " + _("Allow JSON-RPC connections from specified IP address") + "\n" +
 #ifndef QT_GUI
         "  -rpcconnect=<ip>       " + _("Send commands to node running on <ip> (default: 127.0.0.1)") + "\n" +
@@ -514,7 +515,10 @@ bool AppInit2(boost::thread_group& threadGroup)
         // even when -connect or -proxy is specified
         SoftSetBoolArg("-listen", true);
     }
-
+    cout << "mapArgs.count(\"-connect\")=====> "<< mapArgs.count("-connect") << endl;
+    //printf("mapArgs.count(\"-connect\")=====> [%d]\n",mapArgs.count("-connect"));
+    cout << "mapMultiArgs[\"-connect\"].size()====>" <<  mapMultiArgs["-connect"].size() << endl;
+    //printf("mapMultiArgs[\"-connect\"].size()====>[%d]\n", mapMultiArgs["-connect"].size());
     if (mapArgs.count("-connect") && mapMultiArgs["-connect"].size() > 0) {
         // when only connecting to trusted nodes, do not seed via DNS, or listen by default
         SoftSetBoolArg("-dnsseed", false);
@@ -789,6 +793,8 @@ bool AppInit2(boost::thread_group& threadGroup)
     fNameLookup = GetBoolArg("-dns", true);
 
     bool fBound = false;
+
+    printf("fNoListen================>[%d]\n", fNoListen);
     if (!fNoListen) {
         if (mapArgs.count("-bind")) {
             BOOST_FOREACH(std::string strBind, mapMultiArgs["-bind"]) {

@@ -1174,6 +1174,7 @@ void MapPort(bool)
 // The second name should resolve to a list of seed addresses.
 static const char *strMainNetDNSSeed[][2] = {
     {"testtcointools.com", "192.168.0.21"},
+    {"testtcointools2.com", "192.168.0.20"},
 /*    {"testcointools.com", "dnsseed.testcointools.com"},
     {"testcoinpool.org", "dnsseed.testcoinpool.org"},
     {"xurious.com", "dnsseed.ltc.xurious.com"},
@@ -1183,10 +1184,12 @@ static const char *strMainNetDNSSeed[][2] = {
 };
 
 static const char *strTestNetDNSSeed[][2] = {
-    {"testcointools.com", "testnet-seed.testcointools.com"},
+    {"testtcointools.com", "192.168.0.21"},
+    {"testtcointools2.com", "192.168.0.20"},
+/*    {"testcointools.com", "testnet-seed.testcointools.com"},
     {"xurious.com", "testnet-seed.ltc.xurious.com"},
     {"wemine-testnet.com", "dnsseed.wemine-testnet.com"},
-    {NULL, NULL}
+*/    {NULL, NULL}
 };
 
 void ThreadDNSAddressSeed()

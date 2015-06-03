@@ -13,6 +13,7 @@
 #include <sys/resource.h>
 #endif
 
+#include <iostream>
 #include "util.h"
 #include "sync.h"
 #include "version.h"
@@ -1120,6 +1121,8 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
             mapSettingsRet[strKey] = it->value[0];
             // interpret nofoo=1 as foo=0 (and nofoo=0 as foo=1) as long as foo not set)
             InterpretNegativeSetting(strKey, mapSettingsRet);
+            //printf("ReadConfigFile mapSettingsRet[%s][%s]\n", strKey, it->value[0].c_str()); //CHOI_DEBUG
+            cout << "ReadConfigFile mapSettingsRet"<< strKey<< "][" <<it->value[0]<< endl;  //CHOI_DEBUG
         }
         mapMultiSettingsRet[strKey].push_back(it->value[0]);
     }
